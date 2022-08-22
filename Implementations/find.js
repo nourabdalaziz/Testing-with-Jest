@@ -1,4 +1,14 @@
 let find = (array, callbackFun) => {
+  if (!array && !callbackFun) {
+    return new Error("No Arguments supported");
+  } else if (!(array instanceof Array)) {
+    return new Error(`${array} is not an array`);
+  } else if (array && !callbackFun) {
+    return new Error("Undefined is not a function");
+  } else if (array.length == 0) {
+    return new Error("Undefined");
+  }
+
   let result = null;
 
   for (element of array) {
@@ -11,36 +21,4 @@ let find = (array, callbackFun) => {
   return result;
 };
 
-function isCherries(fruit) {
-  return fruit.name === "cherries";
-}
-
-function isPrime(element, index, array) {
-  let start = 2;
-  while (start <= Math.sqrt(element)) {
-    if (element % start++ < 1) {
-      return false;
-    }
-  }
-  return element > 1;
-}
-
-const inventory = [
-  { name: "cherries", quantity: 5 },
-  { name: "apples", quantity: 2 },
-  { name: "bananas", quantity: 0 },
-  { name: "cherries", quantity: 5 },
-];
-
-console.log(find(inventory, isCherries));
-
-const people = [
-  { name: "nour", age: 22 },
-  { name: "ahmad", age: 10 },
-  { name: "sali", age: 15 },
-];
-
-console.log(find(people, ({ name }) => name === "ahmad"));
-
-let numbers = [1, 2, 5, 7, 11, 14, 19, 17];
-console.log(find(numbers, isPrime));
+module.exports = find;
