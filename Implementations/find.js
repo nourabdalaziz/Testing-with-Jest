@@ -9,16 +9,13 @@ let find = (array, callbackFun) => {
     return new Error("Undefined");
   }
 
-  let result;
-
   for (element of array) {
     if (callbackFun(element)) {
-      result = element;
-      break;
+      return element;
     }
   }
 
-  return result;
+  return new Error("Undefined");
 };
 
 module.exports = find;
