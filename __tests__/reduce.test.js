@@ -51,6 +51,19 @@ test("send correct data, an array and a function without initial value", () => {
   expect(reduce(nums, theSum)).toBe(6);
 });
 
+test("send correct data, an array and a function with initial value", () => {
+  const findSum = (...args) => {
+    let sum = 0;
+
+    for (let arg of args) sum += arg;
+
+    return sum;
+  };
+
+  let arrNums = [1, 9, 20, 40, 5, 25];
+  expect(reduce(arrNums, findSum, 0)).toBe(100);
+});
+
 test("send an object instead of an array", () => {
   let testF = function () {};
   let obj = { name: "nour", id: 123456 };
