@@ -23,30 +23,4 @@ let reduce = function (array, callbackFun, initialVal) {
   return result;
 };
 
-const theSum = (...args) => {
-  let sum = 0;
-
-  for (let arg of args) sum += arg;
-
-  return sum;
-};
-
-const flatten = (previousValue, currentValue) =>
-  previousValue.concat(currentValue);
-
-// let arr = [1, 9, 20, 40, 5, 25];
-// let x = reduceImplementation(arr, theSum,0);
-// console.log(x);
-
-// let arr = [
-//   [0, 1],
-//   [2, 3],
-//   [4, 5],
-// ];
-// let x = reduceImplementation(arr, flatten,[]);
-// console.log(x);
-
-// const flattened = [].reduce(flatten, [1]);
-// console.log(flattened);
-
 module.exports = reduce;
