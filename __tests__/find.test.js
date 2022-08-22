@@ -65,3 +65,7 @@ test("send empty array with a function", () => {
   };
   expect(find([], tester)).toEqual(new Error("Undefined"));
 });
+
+test("No such element found", () => {
+  expect(find([1, 2, 3], (x) => x < 0)).toEqual(new Error("Undefined"));
+});
