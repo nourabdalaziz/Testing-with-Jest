@@ -9,7 +9,7 @@ let find = (array, callbackFun) => {
     return new Error("Undefined");
   }
 
-  let result = null;
+  let result;
 
   for (element of array) {
     if (callbackFun(element)) {
