@@ -14,8 +14,4 @@ let map = function (array, callbackFun) {
   }
   return mappedArray;
 };
-
-let arr = [];
-console.log(arr.map((element) => element * 2));
-
 module.exports = map;
