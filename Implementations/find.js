@@ -1,12 +1,10 @@
 let find = (array, callbackFun) => {
   if (!array && !callbackFun) {
-    return new Error("No Arguments supported");
+    throw new TypeError("missing arguments");
   } else if (!(array instanceof Array)) {
-    return new Error(`${array} is not an array`);
+    throw new TypeError(`${array} is not an array`);
   } else if (array && !callbackFun) {
-    return new Error("Undefined is not a function");
-  } else if (array.length == 0) {
-    return new Error("Undefined");
+    throw new TypeError("undefined is not a function");
   }
 
   for (element of array) {
@@ -15,7 +13,7 @@ let find = (array, callbackFun) => {
     }
   }
 
-  return new Error("Undefined");
+  //return undefined when no element found or the array sent is is empty
+  return undefined;
 };
-
 module.exports = find;
