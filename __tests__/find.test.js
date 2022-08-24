@@ -1,23 +1,27 @@
 const find = require("../Implementations/find");
 
 test("No arguments sent", () => {
-  expect(find()).toEqual(new Error("No Arguments supported"));
+  expect(() => {
+    find();
+  }).toThrow("missing argument");
 });
 
 test("send an array only", () => {
   let testArr = [1, 2, 3];
-  expect(find(testArr)).toEqual(new Error("Undefined is not a function"));
+  expect(() => {
+    find(testArr);
+  }).toThrow("undefined is not a function");
 });
 
 test("send a function only", () => {
-  let testFun = function () {};
-  expect(find(testFun)).toEqual(new Error(`${testFun} is not an array`));
+  const testFun = () => {};
+  expect(() => {
+    find(testFun);
+  }).toThrow(`${testFun} is not an array`);
 });
 
 test("send correct data, an array and a function", () => {
-  function isCherries(fruit) {
-    return fruit.name === "cherries";
-  }
+  const isCherries = (fruit) => fruit.name === "cherries";
 
   const inventory = [
     { name: "cherries", quantity: 5 },
@@ -46,7 +50,7 @@ test("send correct data, an array and a function -2-", () => {
   }
   let numbers = [1, 2, 5, 7, 11, 14, 19, 17];
 
-  expect(find(numbers, isPrime)).toEqual(2);
+  expect(find(numbers, isPrime)).toBe(2);
 });
 
 test("send an array of objects with a function", () => {
@@ -60,12 +64,10 @@ test("send an array of objects with a function", () => {
 });
 
 test("send empty array with a function", () => {
-  let tester = function () {
-    /*do something*/
-  };
-  expect(find([], tester)).toEqual(new Error("Undefined"));
+  let tester = () => {};
+  expect(find([], tester)).toBeUndefined();
 });
 
 test("No such element found", () => {
-  expect(find([1, 2, 3], (x) => x < 0)).toEqual(new Error("Undefined"));
+  expect(find([1, 2, 3], (x) => x < 0)).toBeUndefined();
 });
