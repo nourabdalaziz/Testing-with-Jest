@@ -1,10 +1,10 @@
-let filter = (array, callbackFun) => {
+const filter = (array, callbackFun) => {
   if (!array && !callbackFun) {
-    return new Error("No Arguments supported");
+    throw new TypeError("missing arguments");
   } else if (!(array instanceof Array)) {
-    return new Error(`${array} is not an array`);
+    throw new TypeError(`${array} is not an array`);
   } else if (array && !callbackFun) {
-    return new Error("Undefined is not a function");
+    throw new TypeError("undefined is not a function");
   }
 
   let result = [];
@@ -14,6 +14,16 @@ let filter = (array, callbackFun) => {
       result.push(element);
     }
   }
+  /* edit:
+     we can use reduce function as the following :
+
+     const result=array.reduce((prev,curr)=>{
+      if(callbackFun(curr)){
+        return [...prev,curr];
+      }
+      return prev;
+     },[]);
+  */
 
   return result;
 };
