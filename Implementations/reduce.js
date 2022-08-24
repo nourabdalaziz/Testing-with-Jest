@@ -1,12 +1,12 @@
-let reduce = function (array, callbackFun, initialVal) {
-  if (!array && !callbackFun && !initialVal) {
-    return new Error("No Arguments supported");
+const reduce = function (array, callbackFun, initialVal) {
+  if (!array && !callbackFun) {
+    throw new TypeError("missing arguments");
   } else if (!(array instanceof Array)) {
-    return new Error(`${array} is not an array`);
+    throw new TypeError(`${array} is not an array`);
   } else if (array && !callbackFun) {
-    return new Error("Undefined is not a function");
+    throw new TypeError("undefined is not a function");
   } else if (array.length == 0 && !initialVal) {
-    return new Error("Reduce of empty array with no initial value");
+    throw new TypeError("Reduce of empty array with no initial value");
   } else if (array.length == 0 && initialVal) {
     return initialVal;
   }
