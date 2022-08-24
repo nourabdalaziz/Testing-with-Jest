@@ -1,4 +1,4 @@
-let find = (array, callbackFun) => {
+const find = (array, callbackFun) => {
   if (!array && !callbackFun) {
     throw new TypeError("missing arguments");
   } else if (!(array instanceof Array)) {
