@@ -64,7 +64,7 @@ test("send an array of objects with a function", () => {
 });
 
 test("send empty array with a function", () => {
-  let tester = () => {};
+  const tester = () => {};
   expect(find([], tester)).toBeUndefined();
 });
 
