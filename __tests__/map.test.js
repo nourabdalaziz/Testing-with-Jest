@@ -27,8 +27,8 @@ test("send correct data, an array and a function", () => {
 });
 
 test("send an object instead of an array ", () => {
-  const testF = (item) => item ** 2;
-  let obj = { name: "nour", id: 123456 };
+  const testF = (item) => item.id * 2;
+  let obj = { name: "nour", id: 1234 };
   expect(() => {
     map(obj, testF);
   }).toThrow(`${obj} is not an array`);
