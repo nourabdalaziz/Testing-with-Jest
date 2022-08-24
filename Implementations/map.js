@@ -1,13 +1,12 @@
-let map = function (array, callbackFun) {
-  mappedArray = [];
-
+const map = function (array, callbackFun) {
   if (!array && !callbackFun) {
-    return new Error("No Arguments supported");
+    throw new TypeError("missing arguments");
   } else if (!(array instanceof Array)) {
-    return new Error(`${array} is not an array`);
-  } else if (array && callbackFun == undefined) {
-    return new Error("Undefined is not a function");
+    throw new TypeError(`${array} is not an array`);
+  } else if (array && !callbackFun) {
+    throw new TypeError("undefined is not a function");
   }
+  const mappedArray = [];
 
   for (let i = 0; i < array.length; i++) {
     mappedArray[i] = callbackFun(array[i]);
