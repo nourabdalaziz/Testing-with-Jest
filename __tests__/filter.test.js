@@ -1,25 +1,30 @@
 const filter = require("../Implementations/filter");
-
 test("No arguments sent", () => {
-  expect(filter()).toEqual(new Error("No Arguments supported"));
+  expect(() => {
+    filter();
+  }).toThrow("missing argument");
 });
 
 test("send an array only", () => {
   let testArr = [1, 2, 3];
-  expect(filter(testArr)).toEqual(new Error("Undefined is not a function"));
+  expect(() => {
+    filter(testArr);
+  }).toThrow("undefined is not a function");
 });
 
 test("send a function only", () => {
-  let testFun = function () {};
-  expect(filter(testFun)).toEqual(new Error(`${testFun} is not an array`));
+  const testFun = () => {};
+  expect(() => {
+    filter(testFun);
+  }).toThrow(`${testFun} is not an array`);
 });
 
 test("send an object instead of an array", () => {
-  let testF = function () {
-    /*do something*/
-  };
+  const testF = () => {};
   let obj = { name: "nour", id: 123456 };
-  expect(filter(obj, testF)).toEqual(new Error(`${obj} is not an array`));
+  expect(() => {
+    filter(filter(obj, testF));
+  }).toThrow(`${obj} is not an array`);
 });
 
 test("send correct data, an array and a function", () => {
@@ -61,9 +66,7 @@ test("send correct data, an array and a function", () => {
 });
 
 test("send empty array with a function ", () => {
-  let tester = function () {
-    /**do something */
-  };
+  const tester = ()=>{}
   expect(filter([], tester)).toEqual([]);
 });
 
