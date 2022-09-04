@@ -5,9 +5,11 @@ const reduce = function (array, callbackFun, initialVal) {
     throw new TypeError(`${array} is not an array`);
   } else if (array && !callbackFun) {
     throw new TypeError("undefined is not a function");
-  } else if (array.length == 0 && !initialVal) {
+  } 
+  else if (!array.length && !initialVal) {
     throw new TypeError("Reduce of empty array with no initial value");
-  } else if (array.length == 0 && initialVal) {
+  } 
+  else if (!array.length && initialVal) {
     return initialVal;
   }
 
@@ -22,5 +24,7 @@ const reduce = function (array, callbackFun, initialVal) {
   }
   return result;
 };
+console.log([[],{}].map(function(){}))
+console.log(reduce([1,2],function(){},undefined))
 
-module.exports = reduce;
+export default reduce;
