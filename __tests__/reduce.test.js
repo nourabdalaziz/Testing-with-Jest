@@ -1,4 +1,4 @@
-const reduce = require("../Implementations/reduce");
+import reduce from "../Implementations/reduce";
 
 test("No arguments sent", () => {
   expect(() => {
@@ -89,4 +89,9 @@ test("send empty array with a function and without an initial value", () => {
 test("send empty array with a function and with an initial value", () => {
   const tester = () => {};
   expect(reduce([], tester, [1])).toEqual([1]);
+});
+
+test(" handling an initial accumulator value of `undefined`", () => {
+  const tester = () => {};
+  expect(reduce([1, 2], tester, undefined)).toBeUndefined();
 });

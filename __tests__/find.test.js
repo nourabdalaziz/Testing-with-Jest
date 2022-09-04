@@ -1,4 +1,4 @@
-const find = require("../Implementations/find");
+import find from "../Implementations/find";
 
 test("No arguments sent", () => {
   expect(() => {
@@ -70,4 +70,34 @@ test("send empty array with a function", () => {
 
 test("No such element found", () => {
   expect(find([1, 2, 3], (x) => x < 0)).toBeUndefined();
+});
+
+test(" working with `matches` shorthand ", () => {
+  /*
+    sending an array of objcts with an object as arguments 
+  
+    should perform a partial deep comparison between the given object and the each object in the array,
+    returning the first object which has  equivalent property values, else false.
+  
+  */
+  let objects = [
+    { a: 0, b: 0 },
+    { a: 1, b: 1 },
+    { a: 2, b: 2 },
+  ];
+  expect(find(objects, { b: 2 })).toEqual({ a: 2, b: 2 });
+});
+
+test(" working with `property` shorthands", () => {
+  /* 
+  sending an array of objcts with a path as arguments 
+  returning the first object with the value at that path.
+   */
+
+  let objects = [
+    { a: 0, b: 0 },
+    { a: 1, b: 1 },
+    { a: 2, b: 2 },
+  ];
+  expect(find(objects, "b")).toEqual({ a: 1, b: 1 });
 });

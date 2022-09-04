@@ -1,4 +1,4 @@
-const map = require("../Implementations/map");
+import map from "../Implementations/map";
 
 test("No arguments sent", () => {
   expect(() => {
@@ -10,6 +10,20 @@ test("send an array only", () => {
   let testArr = [1, 2, 3];
   expect(() => {
     map(testArr);
+  }).toThrow("undefined is not a function");
+});
+
+test("send an array with null function", () => {
+  let testArr = [1, 2, 3];
+  expect(() => {
+    map(testArr, null);
+  }).toThrow("null is not a function");
+});
+
+test("send an array with undefined function", () => {
+  let testArr = [1, 2, 3];
+  expect(() => {
+    map(testArr, undefined);
   }).toThrow("undefined is not a function");
 });
 
@@ -27,11 +41,9 @@ test("send correct data, an array and a function", () => {
 });
 
 test("send an object instead of an array ", () => {
-  const testF = (item) => item.id * 2;
-  let obj = { name: "nour", id: 1234 };
-  expect(() => {
-    map(obj, testF);
-  }).toThrow(`${obj} is not an array`);
+  const testF = (item) => item * 2;
+  let obj = { name: "nour", id: 2 };
+  expect(map(obj, testF)).toEqual([4]);
 });
 
 test("send a number instead of an array", () => {
@@ -57,4 +69,18 @@ test("send an array of objects", () => {
 test("send empty array with a function", () => {
   const testFn = (item) => item ** 2;
   expect(map([], testFn)).toEqual([]);
+});
+
+test(" working with `property` shorthands", () => {
+  /* 
+  sending an array of objcts with a path as arguments 
+  returning objects with the value at that path.
+   */
+  let users = [{ user: "barney" }, { user: "fred" }];
+  expect(map(users, "user")).toEqual(["barney", "fred"]);
+});
+
+test(" accepting a falsey collection", () => {
+  let falsey = [, null, undefined, false, 0, NaN, ""];
+  expect(map(falsey)).toEqual([[], [], [], [], [], [], []]);
 });
